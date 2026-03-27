@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <!-- The Sun as the Parent -->
+      <a-sphere id="sun" radius="5" position="0 1.6 -15" color="yellow">
+        <!-- Earth Orbit Pivot (Centered at Sun 0,0,0) -->
+        <a-entity
+          id="earth-orbit-pivot"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear"
+        >
+          <!-- The Planet (offset by 15 units from Sun center) -->
+          <a-sphere
+            id="earth"
+            position="15 0 0"
+            radius="1"
+            color="#4CC3D9"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 7000; easing: linear"
+          >
+          </a-sphere><a-sphere
+            id="mars"
+            position="20 0 0"
+            radius="0.8"
+            color="red"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 7000; easing: linear"
+          >
+        </a-entity>
+      </a-sphere>
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
