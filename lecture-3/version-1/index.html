@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+                <img id="image2" src="./red-sports-car-png-1.png" /> 
+              </a-assets>
+      <a-entity
+       environment="preset:egypt; color:grey;">
+     <a-box
+        src="#image2"
+        width="6"
+        height="2"
+        position="2 1 -8"
+        material="transparent: true"
+        animation="property: position; to: -3 1 -7; loop: true; dur: 5000; easing: linear"
+      ></a-box>
+     
+    </a-scene>
+  </body>
+</html>

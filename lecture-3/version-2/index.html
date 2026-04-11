@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id="image" src="./unnamed.png" />
+        <img id="image1" src="./lander.png" />
+        <video
+          id="video"
+          src="./WhatsApp Video 2026-04-10 at 10.40.56.mp4"
+          autoplay
+          loop="true"
+      ></video>
+      </a-assets>
+      <a-entity
+        environment="preset: moon; groundColor: #445; grid: cross"
+      ></a-entity>
+      <a-sphere src="#image" position="-0.17845 12.13046 -26.52278"
+      animation="property: rotation; to: 0 360 0; loop: true; dur: 20000; easing: linear"></a-sphere>
+      <a-box src="#image1"
+       position="0.48246 0.94993 -4.60168" 
+       material="transparent: true"
+       animation="property: position; to: 0 1 -5; loop: true; dur: 20000; easing: linear"></a-box>
+      <a-box src="#video" width="5" height="3" position="-5.96446 1.70356 -12.36909"></a-box>
+  </body>
+</html>
