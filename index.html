@@ -1,20 +1,255 @@
-<!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-cursor-teleport@1.6.0/dist/aframe-cursor-teleport-component.min.js"></script>
   </head>
+
   <body>
-    <h1>Onkar Singh Gahir</h1>
-    <h2>Lectures exercises:</h2>
-    <ul>
-      <li><a href="lecture-1/index.html">Lecture 1</a></li>
-      <li><a href="lecture-2/index.html">Lecture 2</a></li>
-      <li><a href="lecture-3/index.html">Lecture 3</a></li>
-      <li><a href="lecture-4/index.html">Lecture 4</a></li>
-      <li><a href="./final/">Final Project</a></li>
-    </ul>
+    <a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+      <a-assets>
+        <video id="video1" src="./2.mp4" loop="true"></video>
+      </a-assets>
+
+      <!-- Camera Rig -->
+      <a-entity
+        id="cameraRig"
+        cursor-teleport="cameraRig: #cameraRig; cameraHead: #head; collisionEntities: .collision; ignoreEntities: .clickable, .ignore"
+      >
+        <a-entity
+          id="head"
+          position="0 1.6 0"
+          camera
+          look-controls="reverseMouseDrag: true"
+        ></a-entity>
+
+        <!-- VR Hand Controls -->
+        <a-entity
+          laser-controls="hand: left"
+          raycaster="objects: .clickable; far: 100"
+          line="color: red; opacity: 0.75"
+          blink-controls="cameraRig: #cameraRig; teleportOrigin: #head; collisionEntities:.collision"
+        ></a-entity>
+        <a-entity
+          laser-controls="hand: right"
+          raycaster="objects: .clickable"
+          line="color: red; opacity: 0.75"
+          blink-controls="cameraRig: #cameraRig; teleportOrigin: #head; collisionEntities:.collision"
+        ></a-entity>
+      </a-entity>
+
+      <a-sky color="lightblue"></a-sky>
+
+      <a-entity
+        class="collision"
+        position="0 -0.05 1.03957"
+        geometry="depth: 8; height: 0.1; width: 8"
+        material="color: #7BC8A4"
+      ></a-entity>
+
+      <a-entity id="room">
+        <a-plane
+          id="room-floor"
+          position="0 0 -8"
+          rotation="-90 0 0"
+          width="10"
+          height="10"
+          color="red"
+        >
+        </a-plane>
+
+        <a-box
+          position="0 2 -13"
+          width="10"
+          height="4"
+          depth="0.3"
+          color="#ccc"
+          class="ignore"
+        ></a-box>
+
+        <a-box
+          position="-4.75125 3.49307 -12.00172"
+          width="0.3"
+          height="4"
+          depth="10"
+          color="#ddd"
+          geometry="depth: 2; height: 1"
+          class="ignore"
+        ></a-box>
+        <a-box
+          position="-4.75125 2 -7.01725"
+          width="0.3"
+          height="4"
+          depth="10"
+          color="#ddd"
+          geometry="depth: 8"
+          class="ignore"
+        ></a-box>
+        <a-box
+          position="4.75965 2 -8"
+          width="0.3"
+          height="4"
+          depth="10"
+          color="#ddd"
+          class="ignore"
+        ></a-box>
+
+        <a-box
+          position="0 3.18781 -3.8"
+          width="9.2"
+          height="4"
+          depth="0.3"
+          color="#ccc"
+          geometry="height: 1"
+          class="ignore"
+        ></a-box>
+
+        <a-box
+          position="2.58521 1.30444 -3.8"
+          width="9.2"
+          height="4"
+          depth="0.3"
+          color="#ccc"
+          geometry="height: 2.8; width: 4.2"
+          class="ignore"
+        ></a-box>
+        <a-box
+          position="-2.76545 1.30444 -3.8"
+          width="9.2"
+          height="4"
+          depth="0.3"
+          color="#ccc"
+          geometry="height: 2.8; width: 3.8"
+          class="ignore"
+        ></a-box>
+
+        <!-- door 1 -->
+        <a-entity>
+          <a-entity
+            id="doorPivot-1"
+            position="-0.9 1.3 -3.55"
+            animation="property: rotation; to: 0 -100 0; dur: 1000; startEvents: openDoor"
+          >
+            <a-box
+              id="door"
+              position="0.75 0.03766 0"
+              width="1.5"
+              height="2.8"
+              depth="0.1"
+              color="#6b3e26"
+              geometry="height: 2.7"
+            >
+              <a-sphere
+                id="handle-1"
+                position="0.4 0 0.08"
+                radius="0.05"
+                color="gold"
+                class="clickable"
+              >
+              </a-sphere>
+            </a-box>
+          </a-entity>
+        </a-entity>
+
+        <!-- door 2 -->
+        <a-entity position="-1.3 0 -12" rotation="0 90 0">
+          <a-entity
+            id="doorPivot-2"
+            position="-0.9 1.3 -3.55"
+            animation="property: rotation; to: 0 -100 0; dur: 1000; startEvents: openDoor"
+          >
+            <a-box
+              id="door"
+              position="0.75 0.03766 0"
+              width="1.5"
+              height="2.8"
+              depth="0.1"
+              color="#6b3e26"
+              geometry="height: 2.7"
+            >
+              <a-sphere
+                id="handle-2"
+                position="0.4 0 0.08"
+                radius="0.05"
+                color="gold"
+                class="clickable"
+              >
+              </a-sphere>
+            </a-box>
+          </a-entity>
+        </a-entity>
+
+        <a-text
+          value="New Message!"
+          position="-2.72795 3.12448 -12.62123"
+          color="red"
+          animation="dir: alternate; dur: 1500; loop: true; property: position; to: -2 2.5 -5"
+        >
+        </a-text>
+
+        <a-text
+          value="Instagram Notification 🔔"
+          position="1.62232 3.11868 -12.81865"
+          color="yellow"
+          animation="dir: alternate; dur: 1200; loop: true; property: position; to: 2 2 -5"
+        >
+        </a-text>
+
+        <a-text
+          value="You have 99+ alerts"
+          position="-0.44658 1.84723 -12.81677"
+          color="orange"
+          animation="dur: 2000; loop: true; property: rotation; to: 0 10 0"
+        >
+        </a-text>
+
+        <a-entity
+          id="noise"
+          sound="src:; autoplay: true; loop: true; volume: 1"
+        >
+        </a-entity>
+
+        <a-plane
+          src="#video1"
+          width="5"
+          height="3"
+          position="1.43655 1.70356 -12.36909"
+        ></a-plane>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      const doorPivot1 = document.querySelector("#doorPivot-1");
+
+      const doorPivot2 = document.querySelector("#doorPivot-2");
+
+      const handle1 = document.querySelector("#handle-1");
+      const handle2 = document.querySelector("#handle-2");
+
+      const video = document.querySelector("#video1");
+
+      const roomFloor = document.querySelector("#room-floor");
+
+      let opened = false;
+
+      handle1.addEventListener("click", () => {
+        if (opened) return;
+        opened = true;
+
+        doorPivot1.emit("openDoor");
+
+        video.play();
+
+        roomFloor.classList.add("collision");
+
+        handle2.addEventListener("click", () => {
+          alert("hello");
+          if (opened) return;
+          opened = true;
+
+          doorPivot2.emit("openDoor");
+        });
+      });
+    </script>
   </body>
 </html>
